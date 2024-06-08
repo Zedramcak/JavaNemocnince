@@ -7,16 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Doctor {
-
+public class Specialization {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @SequenceGenerator(name = "spec_seq", sequenceName = "spec_seq", allocationSize = 1)
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = "spec_seq")
     private Long id;
     private String name;
-    private Integer idspecialization;
-    private String shifts;
-
-
-
-
 }

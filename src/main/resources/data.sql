@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS specialization (
+/*CREATE TABLE IF NOT EXISTS specialization (
                                 id SERIAL PRIMARY KEY,
                                 name VARCHAR(50) NOT NULL
 );
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS doctor (
                         id SERIAL PRIMARY KEY,
                         name VARCHAR(100) NOT NULL,
                         idSpecialization INT REFERENCES specialization(id),
-                        shifts VARCHAR()
+                        shifts VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS patient (
@@ -26,13 +26,13 @@ CREATE TABLE IF NOT EXISTS patient (
 CREATE TABLE IF NOT EXISTS orders (
                         id SERIAL PRIMARY KEY,
                         idPatient INT REFERENCES patient(id),
-                        workingTime VARCHAR() NOT NULL,
+                        workingTime VARCHAR(100) NOT NULL,
                         idDoctor INT REFERENCES doctor(id),
                         idOperatingRoom INT REFERENCES operatingRoom(id)
-);
+);*/
 
 
-INSERT INTO specialization (name)
+/*INSERT INTO specialization (name)
 VALUES
     ('Orthopedics'),
     ('Pediatrics'),
@@ -59,10 +59,10 @@ VALUES
     (2, 'Bob', 'Smith', 'ABC Insurance'),
     (3, 'Charlie', 'Brown', 'DEF Insurance'),
     (4, 'Diana', 'Williams', 'GHI Insurance');
-
-INSERT INTO orders (id, idPatient, workingTtime, idDoctor, idOperatingRoom)
+*/
+/*INSERT INTO orders (id, idPatient, workingTime, idDoctor, idOperatingRoom)
 VALUES
     (1, 1, '6|8|8|10', 1, 1),
     (2, 2, '6|8|14|16', 2, 2),
     (3, 3, '6|8|10|12', 3, 3),
-    (4, 2, '6|8|16|17', 4, 4);
+    (4, 2, '6|8|16|17', 4, 4);*/

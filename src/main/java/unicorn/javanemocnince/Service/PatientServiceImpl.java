@@ -38,7 +38,6 @@ public class PatientServiceImpl implements PatientService{
             existingPatient.setName(updatedPatient.getName());
             existingPatient.setSurname(updatedPatient.getSurname());
             existingPatient.setInsurance(updatedPatient.getInsurance());
-            // Update other fields as needed
 
             return patientRepository.save(existingPatient);
         } else {

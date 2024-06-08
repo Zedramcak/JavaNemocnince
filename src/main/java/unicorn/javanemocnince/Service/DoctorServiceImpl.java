@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import unicorn.javanemocnince.Errors.DoctorNotFoundException;
 import unicorn.javanemocnince.Models.Doctor;
-import unicorn.javanemocnince.Models.Enums.Specialization;
+import unicorn.javanemocnince.Models.Specialization;
 import unicorn.javanemocnince.Repo.DoctorRepository;
 
 import java.util.Optional;

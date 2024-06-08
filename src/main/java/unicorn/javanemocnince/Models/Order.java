@@ -7,12 +7,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @SequenceGenerator(name = "order_seq", sequenceName = "order_seq", allocationSize = 1)
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = "order_seq")
     private Long id;
-    private Integer idPatient;
-    private Integer idDoctor;
-    private Integer idOperatingRoom;
+    @OneToOne
+    @JoinColumn(name="idpatient", referencedColumnName="id")
+    private Patient idPatient;
+    @OneToOne
+    @JoinColumn(name="iddoctor", referencedColumnName="id")
+    private Doctor idDoctor;
+    @OneToOne
+    @JoinColumn(name="idoperatingroom", referencedColumnName="id")
+    private OperatingRoom idOperatingRoom;
 
 }

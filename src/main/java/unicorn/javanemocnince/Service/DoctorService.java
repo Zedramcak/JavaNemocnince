@@ -1,7 +1,7 @@
 package unicorn.javanemocnince.Service;
 
 import unicorn.javanemocnince.Models.Doctor;
-import unicorn.javanemocnince.Models.Enums.Specialization;
+import unicorn.javanemocnince.Models.Specialization;
 
 public interface DoctorService {
     void addSpecialization(String doctorId, Specialization specialization);
