@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unicorn.javanemocnince.Errors.OrderNotFoundException;
+import unicorn.javanemocnince.Models.NewOrder;
 import unicorn.javanemocnince.Models.Order;
 import unicorn.javanemocnince.Service.OrderService;
 
@@ -31,8 +32,8 @@ public class OrderController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<Order> addOrder(@RequestBody Order order){
-        Order newOrder = orderService.addOrder(order);
+    public ResponseEntity<Order> addOrder(@RequestBody NewOrder newOrder){
+        Order newOrder = orderService.addOrder(newOrder);
         return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
 
     }

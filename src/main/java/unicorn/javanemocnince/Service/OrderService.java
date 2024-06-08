@@ -1,12 +1,13 @@
 package unicorn.javanemocnince.Service;
 
+import unicorn.javanemocnince.Models.NewOrder;
 import unicorn.javanemocnince.Models.Order;
 
 public interface OrderService {
 
     public Iterable<Order> listOrders();
 
-    Order addOrder(Order order);
+    Order addOrder(NewOrder newOrder);
 
     Order updateOrder(Long id, Order updatedOrder);
 

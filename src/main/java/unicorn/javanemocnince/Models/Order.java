@@ -22,5 +22,6 @@ public class Order {
     @OneToOne
     @JoinColumn(name="idoperatingroom", referencedColumnName="id")
     private OperatingRoom idOperatingRoom;
+    private String workingtime;
 
 }
