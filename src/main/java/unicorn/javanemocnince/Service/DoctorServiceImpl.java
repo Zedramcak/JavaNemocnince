@@ -7,6 +7,7 @@ import unicorn.javanemocnince.Models.Doctor;
 import unicorn.javanemocnince.Models.Specialization;
 import unicorn.javanemocnince.Repo.DoctorRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +16,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     DoctorRepository doctorRepository;
 
+
+    @Override
+    public List<Doctor> getDoctorsBySpecialization(Specialization specialization) {
+        return doctorRepository.findAllByIdspecialization(specialization);
+    }
 
     @Override
     public Doctor Doctor(Doctor doctor) {
@@ -67,15 +73,5 @@ public class DoctorServiceImpl implements DoctorService {
         } else {
             throw new DoctorNotFoundException("Doktor s ID " + id + " nebyl nalezen.");
         }
-    }
-
-    @Override
-    public void addSpecialization(String doctorId, Specialization specialization) {
-
-    }
-
-    @Override
-    public void addWorkingTime(String doctorId, String workingTime) {
-
     }
 }

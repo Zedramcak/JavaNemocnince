@@ -13,6 +13,10 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     OrderRepository orderRepository;
+    @Autowired
+    PatientService patientService;
+    @Autowired
+    DoctorService doctorService;
 
     @Override
     public Iterable<Order> listOrders() {
@@ -21,6 +25,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order addOrder(Order order) {
+
         return orderRepository.save(order);
     }
 

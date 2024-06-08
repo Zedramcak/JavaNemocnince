@@ -9,6 +9,7 @@ import unicorn.javanemocnince.Models.Specialization;
 import unicorn.javanemocnince.Models.OperatingRoom;
 import unicorn.javanemocnince.Repo.OperatingRoomRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,17 +17,6 @@ public class OperatingRoomServiceImpl implements OperatingRoomService{
     
     @Autowired
     OperatingRoomRepository operatingRoomRepository;
-
-    
-    public void isFree(){
-
-    }
-    public void addSpecialization(Specialization specialization){
-
-    }
-    public void addAllowedDoctor(Doctor doctor){
-
-    }
 
     @Override
     public Iterable<OperatingRoom> listOperatingRooms() {
@@ -73,5 +63,10 @@ public class OperatingRoomServiceImpl implements OperatingRoomService{
         } else {
             throw new OperatingRoomNotFoundException("Pacient s ID " + id + " nebyl nalezen.");
         }
+    }
+
+    @Override
+    public List<OperatingRoom> findBySpecialization(Specialization specialization) {
+        return operatingRoomRepository.findAllByIdspecializations(specialization);
     }
 }

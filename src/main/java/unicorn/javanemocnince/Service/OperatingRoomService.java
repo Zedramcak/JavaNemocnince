@@ -5,10 +5,9 @@ import unicorn.javanemocnince.Models.Doctor;
 import unicorn.javanemocnince.Models.Specialization;
 import unicorn.javanemocnince.Models.OperatingRoom;
 
+import java.util.List;
+
 public interface OperatingRoomService {
-    void isFree();
-    void addSpecialization(Specialization specialization);
-    void addAllowedDoctor(Doctor doctor);
 
     Iterable<OperatingRoom> listOperatingRooms();
 
@@ -19,4 +18,6 @@ public interface OperatingRoomService {
     void deleteOperatingRoom(Long id);
 
     OperatingRoom getOperatingRoom(Long id);
+
+    List<OperatingRoom> findBySpecialization(Specialization specialization);
 }
