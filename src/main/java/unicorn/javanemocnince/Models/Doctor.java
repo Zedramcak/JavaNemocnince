@@ -18,7 +18,7 @@ public class Doctor {
     private Long id;
     private String name;
     private Integer idspecialization;
-    // TODO
+    private String shifts;
 
 
 

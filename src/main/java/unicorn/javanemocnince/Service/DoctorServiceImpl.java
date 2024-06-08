@@ -39,7 +39,7 @@ public class DoctorServiceImpl implements DoctorService {
             Doctor existingDoctor = existingDoctorOptional.get();
             existingDoctor.setName(updatedDoctor.getName());
             existingDoctor.setIdspecialization(updatedDoctor.getIdspecialization());
-            // Update other fields as needed
+            existingDoctor.setShifts(updatedDoctor.getShifts());
 
             return doctorRepository.save(existingDoctor);
         } else {
@@ -76,11 +76,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public void addWorkingTime(String doctorId, String workingTime) {
-
-    }
-
-    @Override
-    public void addBusy(String doctorId, String timeBusy) {
 
     }
 }
