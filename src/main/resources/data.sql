@@ -1,16 +1,21 @@
+CREATE TABLE specialization (
+                                id SERIAL PRIMARY KEY,
+                                name VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE operatingRoom (
                                id SERIAL PRIMARY KEY,
                                title VARCHAR(50) NOT NULL,
-                               specialization VARCHAR(50) NOT NULL,
-                               occupied TIMESTAMPTZ[]
+                               idSpecialization INT REFERENCES specialization(id),
+                               occupied TSRANGE[]
 );
 
 CREATE TABLE doctor (
                         id SERIAL PRIMARY KEY,
                         name VARCHAR(100) NOT NULL,
-                        specialization VARCHAR(50) NOT NULL,
-                        shifts TIMESTAMPTZ[],
-                        busyness TIMESTAMPTZ[]
+                        idSpecialization INT REFERENCES specialization(id),
+                        shifts TSRANGE[],
+                        busyness TSRANGE[]
 );
 
 CREATE TABLE patient (
@@ -29,19 +34,26 @@ CREATE TABLE orders (
 );
 
 
-INSERT INTO operatingRoom (id, title, specialization, occupied)
+INSERT INTO specialization (name)
 VALUES
-    (1, 'Room 1', 'Orthopedics', ['2024-06-10 08:00-2024-06-10 10:00', '2024-06-10 14:00-2024-06-10 16:00']),
-    (2, 'Room 2', 'pediatrics', ['2024-06-10 10:00-2024-06-10 12:00', '2024-06-10 16:00-2024-06-10 18:00']),
-    (3, 'Room 3', 'Neurology', ['2024-06-10 08:00-2024-06-10 20:00']),
-    (4, 'Room 4', 'Cardiology', ['2024-06-10 08:00-2024-06-10 20:00']);
+    ('Orthopedics'),
+    ('Pediatrics'),
+    ('Neurology'),
+    ('Cardiology');
 
-INSERT INTO doctor (id, name, specialization, shifts, busyness)
+INSERT INTO operatingRoom (id, title, idSpecialization, occupied)
 VALUES
-    (1, 'Dr. John Smith', 'Cardiology', ['2024-06-10 14:00:00-2024-06-10 16:00:00'], ['2024-06-10 14:00:00-2024-06-10 15:00:00']),
-    (2, 'Dr. Emily Johnson', 'Neurology', ['2024-06-10 08:00:00-2024-06-10 10:00:00', '2024-06-10 14:00:00-2024-06-10 16:00:00'], []),
-    (3, 'Dr. Michael Williams', 'Orthopedics', ['2024-06-10 08:00:00-2024-06-10 10:00:00'], ['2024-06-10 08:00:00-2024-06-10 09:00:00']),
-    (4, 'Dr. Sarah Brown', 'Pediatrics', ['2024-06-10 08:00:00-2024-06-10 10:00:00', '2024-06-10 14:00:00-2024-06-10 16:00:00'], []);
+    (1, 'Room 1', 1, ARRAY[tsrange('2024-06-10 08:00:00', '2024-06-10 10:00:00'), tsrange('2024-06-10 14:00:00', '2024-06-10 16:00:00')]),
+    (2, 'Room 2', 2, ARRAY[tsrange('2024-06-10 10:00:00', '2024-06-10 12:00:00'), tsrange('2024-06-10 16:00:00', '2024-06-10 18:00:00')]),
+    (3, 'Room 3', 3, ARRAY[tsrange('2024-06-10 08:00:00', '2024-06-10 20:00:00')]),
+    (4, 'Room 4', 4, ARRAY[tsrange('2024-06-10 08:00:00', '2024-06-10 20:00:00')]);
+
+INSERT INTO doctor (id, name, idSpecialization, shifts, busyness)
+VALUES
+    (1, 'Dr. John Smith', 4, ARRAY[tsrange('2024-06-10 14:00:00', '2024-06-10 16:00:00')], ARRAY[tsrange('2024-06-10 14:00:00', '2024-06-10 15:00:00')]),
+    (2, 'Dr. Emily Johnson', 3, ARRAY[tsrange('2024-06-10 08:00:00', '2024-06-10 10:00:00'), tsrange('2024-06-10 14:00:00', '2024-06-10 16:00:00')], ARRAY[]::TSRANGE[]),
+    (3, 'Dr. Michael Williams', 1, ARRAY[tsrange('2024-06-10 08:00:00', '2024-06-10 10:00:00')], ARRAY[tsrange('2024-06-10 08:00:00', '2024-06-10 09:00:00')]),
+    (4, 'Dr. Sarah Brown', 2, ARRAY[tsrange('2024-06-10 08:00:00', '2024-06-10 10:00:00'), tsrange('2024-06-10 14:00:00', '2024-06-10 16:00:00')], ARRAY[]::TSRANGE[]);
 
 INSERT INTO patient (id, name, surname, insurance)
 VALUES
@@ -52,7 +64,7 @@ VALUES
 
 INSERT INTO orders (id, idPatient, time, idDoctor, idOperatingRoom)
 VALUES
-    (1, 1, '2024-06-10 10:00:00', 1, 1),
-    (2, 2, '2024-06-15 14:00:00', 2, 2),
-    (3, 3, '2024-06-20 08:00:00', 3, 3),
-    (4, 2, '2024-06-25 10:00:00', 4, 4);
+    (1, 1, TIMESTAMPTZ '2024-06-10 10:00:00+00', 1, 1),
+    (2, 2, TIMESTAMPTZ '2024-06-15 14:00:00+00', 2, 2),
+    (3, 3, TIMESTAMPTZ '2024-06-20 08:00:00+00', 3, 3),
+    (4, 2, TIMESTAMPTZ '2024-06-25 10:00:00+00', 4, 4);
