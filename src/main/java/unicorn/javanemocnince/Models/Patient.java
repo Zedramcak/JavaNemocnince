@@ -1,21 +1,20 @@
 package unicorn.javanemocnince.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 public class Patient {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private String id;
+    @SequenceGenerator(name = "patient_seq", sequenceName = "patient_seq", allocationSize = 1)
+    @GeneratedValue(strategy= GenerationType.AUTO, generator = "patient_seq")
+    private Long id;
     private String name;
     private String surname;
     private String insurance;
