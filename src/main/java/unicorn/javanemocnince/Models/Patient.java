@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
-public class Pacient {
+public class Patient {
     private String id;
     private String firstName;
     private String lastName;
