@@ -1,16 +1,16 @@
-CREATE TABLE specialization (
+CREATE TABLE IF NOT EXISTS specialization (
                                 id SERIAL PRIMARY KEY,
                                 name VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE operatingRoom (
+CREATE TABLE IF NOT EXISTS operatingRoom (
                                id SERIAL PRIMARY KEY,
                                title VARCHAR(50) NOT NULL,
                                idSpecialization INT REFERENCES specialization(id),
                                occupied TSRANGE[]
 );
 
-CREATE TABLE doctor (
+CREATE TABLE IF NOT EXISTS doctor (
                         id SERIAL PRIMARY KEY,
                         name VARCHAR(100) NOT NULL,
                         idSpecialization INT REFERENCES specialization(id),
@@ -18,14 +18,14 @@ CREATE TABLE doctor (
                         busyness TSRANGE[]
 );
 
-CREATE TABLE patient (
+CREATE TABLE IF NOT EXISTS patient (
                          id SERIAL PRIMARY KEY,
                          name VARCHAR(100) NOT NULL,
                          surname VARCHAR(100) NOT NULL,
                          insurance VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
                         id SERIAL PRIMARY KEY,
                         idPatient INT REFERENCES patient(id),
                         time TIMESTAMPTZ NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE orders (
 );
 
 
-INSERT INTO specialization (name)
+/*INSERT INTO specialization (name)
 VALUES
     ('Orthopedics'),
     ('Pediatrics'),
@@ -67,4 +67,4 @@ VALUES
     (1, 1, TIMESTAMPTZ '2024-06-10 10:00:00+00', 1, 1),
     (2, 2, TIMESTAMPTZ '2024-06-15 14:00:00+00', 2, 2),
     (3, 3, TIMESTAMPTZ '2024-06-20 08:00:00+00', 3, 3),
-    (4, 2, TIMESTAMPTZ '2024-06-25 10:00:00+00', 4, 4);
+    (4, 2, TIMESTAMPTZ '2024-06-25 10:00:00+00', 4, 4);*/

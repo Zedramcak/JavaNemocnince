@@ -1,18 +1,26 @@
 package unicorn.javanemocnince.Models;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import unicorn.javanemocnince.Models.Enums.Specialization;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Getter
 @Setter
+@Entity
 public class Doctor {
-    private String id;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private String name;
-    private ArrayList<Specialization> specializations;
-    private ArrayList<String> times;
-    private ArrayList<String> occupiedTime;
+    private Integer idspecialization;
+    // TODO
+
+
+
 
 }
